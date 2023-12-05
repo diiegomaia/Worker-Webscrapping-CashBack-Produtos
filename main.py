@@ -4,6 +4,8 @@ from resources.cashback.funcoes import raspagem_meliuz as me
 from resources.produtos_mercado_livre.funcoes import ML_selecionados
 from resources.produtos_mercado_livre.funcoes import ML_OMaisbarato """
 #from recursos.mercado.funções import sams_club_selecao
+import schedule
+import time as t
 from recursos.mercado.funções import ramos_selecao
 
 import time as t
@@ -60,7 +62,7 @@ def main_ramos_selecao():
         fullDataset = (
                 ramo['Data'], ramo['Produto'], ramo['Preco']
             )
-
+        print(fullDataset)
         #db.register_ramos_selecao(fullDataset)
 
 
@@ -74,6 +76,41 @@ main_ML_Omaisbarato() """
 main_ramos_selecao()
 
 msg()
+
+
+
+
+
+schedule.every(60).seconds.do(main_ramos_selecao)
+
+#schedule.every().day.at("04:37").astimezone(tz).do(main)
+#schedule.every().day.at("04:42","America/Sao_Paulo").do(main)
+#schedule.every().day.at("03:58", pytz.timezone("America/Sao_Paulo")).do(Queue)
+
+#schedule.every(10).seconds.do(main)
+
+while True:
+      schedule.run_pending()
+      t.sleep(1)
+
+""" schedule.every(10).minutes.do(job)
+schedule.every().hour.do(job)
+schedule.every().day.at("10:30").do(job)
+schedule.every().monday.do(job)
+schedule.every().wednesday.at("13:15").do(job)
+schedule.every().minute.at(":17").do(job) """
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 """ Salvar no github
